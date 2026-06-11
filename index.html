@@ -6,75 +6,906 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>Pizza More | Gallery Menu</title>
-    <meta name="description" content="Menu digital de Pizza More — Pizzas artisanales à Sousse.">
+    <title>Pizza More × Ozeol | Menu Exclusif Collaborateurs</title>
+    <meta name="description" content="Menu exclusif Pizza More pour les collaborateurs Ozeol — Overstock Global Solution, Sousse.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,700;1,400&display=swap"
-        rel="stylesheet">
-    <link rel="icon" type="image/png" href="OIP__1_-removebg-preview.png">
-    <link rel="apple-touch-icon" href="OIP__1_-removebg-preview.png">
-    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="logo-Ozeol.png">
+    <link rel="apple-touch-icon" href="logo-Ozeol.png">
+    <style>
+        /* =========================================================
+           PIZZA MORE × OZEOL — Exclusive Corporate Menu
+           Deep Orange + Charcoal + Premium Gold Design
+           ========================================================= */
+
+        :root {
+            --white: #ffffff;
+            --ozeol-orange: #E8521A;
+            --ozeol-orange-light: #FF7040;
+            --ozeol-orange-dark: #B83E0E;
+            --gold: #c9a66b;
+            --charcoal: #1a1210;
+            --glass-bg: rgba(255, 255, 255, 0.06);
+            --glass-border: rgba(255, 255, 255, 0.15);
+            --glass-orange: rgba(232, 82, 26, 0.15);
+            --glass-blur: blur(20px);
+            --muted: rgba(255, 255, 255, 0.6);
+            --font-display: 'Playfair Display', serif;
+            --font-ui: 'Outfit', sans-serif;
+            --safe-top: env(safe-area-inset-top);
+            --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+        body {
+            font-family: var(--font-ui);
+            background: var(--charcoal);
+            color: var(--white);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* ── Fixed Background ── */
+        .fixed-bg {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .bg-img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            transform: scale(1.1);
+            filter: brightness(0.3) saturate(1.0) hue-rotate(-5deg);
+            animation: bgPan 30s linear infinite alternate;
+        }
+
+        @keyframes bgPan {
+            from { transform: scale(1.1) translateX(-2%); }
+            to   { transform: scale(1.2) translateX(2%); }
+        }
+
+        .bg-overlay {
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(circle at 20% 50%, rgba(232, 82, 26, 0.12) 0%, transparent 60%),
+                radial-gradient(circle at 80% 20%, rgba(201, 166, 107, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at center, transparent 0%, rgba(0,0,0,0.7) 100%);
+        }
+
+        /* ── Animated Orbs ── */
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            pointer-events: none;
+            animation: drift 20s infinite alternate ease-in-out;
+        }
+
+        .orb.o1 { width: 500px; height: 500px; top: -150px; right: -100px; background: rgba(232, 82, 26, 0.12); animation-duration: 18s; }
+        .orb.o2 { width: 350px; height: 350px; bottom: 10%; left: -80px; background: rgba(201, 166, 107, 0.08); animation-delay: -6s; }
+        .orb.o3 { width: 250px; height: 250px; top: 50%; left: 50%; background: rgba(232, 82, 26, 0.06); animation-delay: -12s; }
+
+        @keyframes drift {
+            from { transform: translate(0, 0) rotate(0deg); }
+            to   { transform: translate(40px, 60px) rotate(15deg); }
+        }
+
+        /* ── Loader ── */
+        .loader {
+            position: fixed; inset: 0;
+            background: #0e0b09;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 1.5rem;
+            transition: opacity 0.9s ease, visibility 0.9s;
+        }
+        .loader.hidden { opacity: 0; visibility: hidden; }
+
+        .loader-logos {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            flex-wrap: nowrap;
+        }
+
+        .loader-logo-pm {
+            width: 90px;
+            flex-shrink: 0;
+            filter: drop-shadow(0 0 25px rgba(201,166,107,0.5));
+            animation: logoPulse 2s ease-in-out infinite alternate;
+        }
+
+        .loader-x {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            color: rgba(255,255,255,0.3);
+            font-style: italic;
+        }
+
+        .loader-logo-oz {
+            width: 120px;
+            flex-shrink: 0;
+            filter: drop-shadow(0 0 25px rgba(232, 82, 26, 0.5));
+            animation: logoPulse 2s ease-in-out infinite alternate-reverse;
+        }
+
+        @keyframes logoPulse {
+            from { filter: drop-shadow(0 0 15px rgba(201,166,107,0.3)); }
+            to   { filter: drop-shadow(0 0 30px rgba(201,166,107,0.7)); }
+        }
+
+        .loader-bar-track { width: 200px; height: 3px; background: rgba(255,255,255,0.08); border-radius: 10px; overflow: hidden; }
+        .loader-bar-fill { width: 0%; height: 100%; background: linear-gradient(to right, var(--gold), var(--ozeol-orange)); animation: load 1.8s ease-in-out forwards; }
+        @keyframes load { to { width: 100%; } }
+
+        .loader-tagline {
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--ozeol-orange);
+            opacity: 0.8;
+        }
+
+        /* ── Hero ── */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+            z-index: 10;
+            transition: transform 1s cubic-bezier(0.65, 0, 0.35, 1), opacity 0.8s ease;
+        }
+
+        /* Partnership badge at top */
+        .hero-partnership {
+            display: flex;
+            flex-wrap: nowrap;
+            align-items: center;
+            gap: 1.2rem;
+            background: rgba(255,255,255,0.07);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 100px;
+            padding: 0.6rem 1.5rem;
+            margin-bottom: 2.5rem;
+            animation: float 4s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-6px); }
+        }
+
+        .partner-logo-pm { width: 50px; height: 50px; object-fit: contain; flex-shrink: 0; }
+        .partner-sep { font-size: 1.2rem; color: rgba(255,255,255,0.3); font-family: var(--font-display); font-style: italic; flex-shrink: 0; }
+        .partner-logo-oz { height: 36px; object-fit: contain; flex-shrink: 0; }
+
+        .hero-headline {
+            font-family: var(--font-display);
+            font-size: 3.2rem;
+            line-height: 1.1;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero-headline em {
+            color: var(--ozeol-orange);
+            font-style: italic;
+        }
+
+        .hero-badge-corporate {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, rgba(232,82,26,0.25), rgba(184,62,14,0.15));
+            border: 1px solid rgba(232,82,26,0.4);
+            border-radius: 100px;
+            padding: 0.5rem 1.2rem;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--ozeol-orange-light);
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-sub {
+            max-width: 520px;
+            margin: 0 auto 1.5rem;
+            color: var(--muted);
+            font-size: 1.05rem;
+            line-height: 1.6;
+        }
+
+        .hero-company-info {
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 20px;
+            padding: 1.2rem 2rem;
+            margin: 0 auto 2.5rem;
+            max-width: 500px;
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.65);
+            line-height: 1.7;
+        }
+
+        .hero-company-info strong {
+            color: var(--ozeol-orange-light);
+            font-weight: 700;
+        }
+
+        .hero-cta {
+            background: linear-gradient(135deg, var(--ozeol-orange), var(--ozeol-orange-dark));
+            color: var(--white);
+            border: none;
+            padding: 1.1rem 2.8rem;
+            border-radius: 100px;
+            font-weight: 700;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+            transition: all 0.4s var(--ease-spring);
+            box-shadow: 0 10px 40px rgba(232,82,26,0.4), 0 2px 8px rgba(0,0,0,0.3);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-family: var(--font-ui);
+        }
+        .hero-cta:hover {
+            background: linear-gradient(135deg, var(--ozeol-orange-light), var(--ozeol-orange));
+            transform: translateY(-4px) scale(1.03);
+            box-shadow: 0 20px 50px rgba(232,82,26,0.5);
+        }
+        .hero-cta .cta-arrow { transition: transform 0.4s var(--ease-spring); }
+        .hero-cta:hover .cta-arrow { transform: translateY(4px); }
+
+        .reveal-text {
+            opacity: 0;
+            filter: blur(20px);
+            transform: translateY(30px);
+            transition: opacity 1.2s ease, filter 1.2s ease, transform 1.2s cubic-bezier(0.2, 1, 0.3, 1);
+        }
+        .reveal-text.active { opacity: 1; filter: blur(0); transform: translateY(0); }
+
+        /* ── App Shell ── */
+        .app { display: none; width: 100%; min-height: 100vh; }
+        .app.visible {
+            display: block;
+            animation: fadeIn 0.8s ease forwards;
+        }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        /* ── App Header ── */
+        .app-header {
+            position: sticky;
+            top: 1rem;
+            left: 0; right: 0;
+            margin: 0 auto 2rem;
+            width: fit-content;
+            max-width: 92%;
+            padding: 0.5rem 1rem 0.5rem 0.7rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            background: rgba(18, 10, 6, 0.75);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(232, 82, 26, 0.3);
+            border-radius: 100px;
+            z-index: 100;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.4), 0 0 0 1px rgba(232,82,26,0.1) inset;
+        }
+
+        .header-logos {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .app-logo-pm { width: 36px; height: 36px; object-fit: contain; }
+        .header-sep { font-size: 0.9rem; color: rgba(255,255,255,0.25); font-family: var(--font-display); font-style: italic; }
+        .app-logo-oz { height: 24px; object-fit: contain; }
+
+        .header-divider {
+            width: 1px;
+            height: 30px;
+            background: rgba(255,255,255,0.12);
+        }
+
+        .header-text { display: flex; flex-direction: column; }
+        .app-title { font-family: var(--font-display); font-size: 1.1rem; color: var(--white); font-weight: 700; line-height: 1.1; }
+        .app-subtitle { font-size: 0.58rem; color: var(--ozeol-orange-light); text-transform: uppercase; letter-spacing: 2px; font-weight: 700; }
+
+        /* ── Ozeol Welcome Banner ── */
+        .ozeol-banner {
+            max-width: 900px;
+            margin: 0 auto 2rem;
+            padding: 0 1.5rem;
+        }
+
+        .ozeol-banner-inner {
+            background: linear-gradient(135deg, rgba(232,82,26,0.15) 0%, rgba(184,62,14,0.08) 50%, rgba(201,166,107,0.08) 100%);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(232,82,26,0.25);
+            border-radius: 24px;
+            padding: 1.5rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ozeol-banner-inner::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 2px;
+            background: linear-gradient(to right, transparent, var(--ozeol-orange), transparent);
+        }
+
+        .banner-icon {
+            font-size: 2.5rem;
+            flex-shrink: 0;
+        }
+
+        .banner-text h3 {
+            font-size: 1rem;
+            font-weight: 800;
+            color: var(--ozeol-orange-light);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.3rem;
+        }
+
+        .banner-text p {
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.65);
+            line-height: 1.5;
+        }
+
+        /* ── Grid Gallery ── */
+        .grid-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            padding: 0 1.5rem 5rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        @media (min-width: 600px) { .grid-container { grid-template-columns: 1fr 1fr; } }
+        @media (min-width: 1024px) { .grid-container { grid-template-columns: 1fr 1fr 1fr; } }
+
+        .grid-category-header {
+            grid-column: 1 / -1;
+            margin-top: 2.5rem;
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .grid-category-header h2 {
+            font-family: var(--font-display);
+            font-size: 1.7rem;
+            color: var(--ozeol-orange-light);
+            white-space: nowrap;
+        }
+
+        .grid-category-header .header-line {
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(to right, rgba(232,82,26,0.4), transparent);
+        }
+
+        /* ── Cards ── */
+        .grid-card {
+            background: rgba(255, 255, 255, 0.07);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 24px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: transform 0.8s cubic-bezier(0.2, 1, 0.3, 1), opacity 0.8s ease, box-shadow 0.4s ease, border-color 0.4s ease;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+
+        .grid-card.reveal { opacity: 1; transform: translateY(0); }
+
+        .grid-card:hover {
+            border-color: rgba(232,82,26,0.4);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.4), 0 0 40px rgba(232,82,26,0.08);
+            transform: translateY(-6px);
+        }
+
+        /* Glass sheen on hover */
+        .grid-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 50%; height: 100%;
+            background: linear-gradient(to right, transparent, rgba(255,255,255,0.08), transparent);
+            transform: skewX(-25deg);
+            transition: 0.7s;
+            z-index: 2;
+        }
+        .grid-card:hover::before { left: 150%; }
+
+        .card-image-box {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 4/3;
+            overflow: hidden;
+        }
+
+        .card-image-box img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+            transform: scale(1.05);
+        }
+
+        .grid-card:hover img { transform: scale(1.12); }
+
+        /* Orange gradient on image bottom */
+        .card-image-box::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            height: 60%;
+            background: linear-gradient(to top, rgba(15,8,4,0.7), transparent);
+        }
+
+        .card-badge {
+            position: absolute;
+            top: 1rem; right: 1rem;
+            padding: 0.45rem 0.85rem;
+            border-radius: 10px;
+            font-size: 0.72rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1.5px solid rgba(255,255,255,0.3);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            z-index: 10;
+            color: var(--white);
+            background: rgba(20,15,10,0.88);
+        }
+
+        .card-badge.badge-hot { background: rgba(210,45,35,0.95); box-shadow: 0 0 20px rgba(255,69,58,0.4); animation: badgePulse 2s infinite; }
+        .card-badge.badge-new { background: rgba(30,180,70,0.95); box-shadow: 0 0 20px rgba(48,209,88,0.4); }
+        .card-badge.badge-limited { background: rgba(140,50,210,0.95); box-shadow: 0 0 20px rgba(191,95,255,0.4); }
+        .card-badge.badge-gold { background: rgba(180,140,60,0.95); box-shadow: 0 0 20px rgba(201,166,107,0.4); }
+
+        @keyframes badgePulse {
+            0%   { transform: scale(1); box-shadow: 0 0 10px rgba(255,69,58,0.3); }
+            50%  { transform: scale(1.05); box-shadow: 0 0 20px rgba(255,69,58,0.5); }
+            100% { transform: scale(1); box-shadow: 0 0 10px rgba(255,69,58,0.3); }
+        }
+
+        .card-content {
+            padding: 1.4rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            background: linear-gradient(to bottom, rgba(15,8,4,0.2), rgba(15,8,4,0.6));
+        }
+
+        .card-title {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            margin-bottom: 0.6rem;
+            color: var(--white);
+        }
+
+        .card-ingredients {
+            font-size: 0.82rem;
+            color: rgba(255,255,255,0.75);
+            margin-bottom: 1.2rem;
+            line-height: 1.5;
+            flex: 1;
+        }
+
+        .card-footer {
+            padding-top: 1rem;
+            border-top: 1px solid rgba(232,82,26,0.2);
+        }
+
+        .card-prices { display: flex; gap: 0.7rem; }
+
+        .price-item {
+            flex: 1;
+            text-align: center;
+            background: rgba(232,82,26,0.08);
+            padding: 0.55rem 0.4rem;
+            border-radius: 12px;
+            border: 1px solid rgba(232,82,26,0.2);
+            transition: background 0.3s, border-color 0.3s;
+        }
+
+        .grid-card:hover .price-item {
+            background: rgba(232,82,26,0.15);
+            border-color: rgba(232,82,26,0.35);
+        }
+
+        .price-item .s { display: block; font-size: 0.58rem; font-weight: 700; color: var(--ozeol-orange-light); margin-bottom: 2px; letter-spacing: 1px; text-transform: uppercase; }
+        .price-item .v { font-size: 0.95rem; font-weight: 800; color: var(--white); }
+
+        /* ── Footer ── */
+        .app-footer {
+            padding: 4rem 2rem 6rem;
+            text-align: center;
+        }
+
+        .footer-logos {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1.2rem;
+            margin-bottom: 1.5rem;
+            opacity: 0.6;
+        }
+
+        .footer-logo-pm { width: 50px; object-fit: contain; filter: brightness(0.7); }
+        .footer-sep { font-size: 1rem; color: rgba(255,255,255,0.3); font-family: var(--font-display); font-style: italic; }
+        .footer-logo-oz { height: 28px; object-fit: contain; filter: brightness(0.7); }
+
+        .footer-text {
+            font-size: 0.78rem;
+            color: var(--muted);
+            line-height: 1.8;
+        }
+
+        .footer-text a { color: var(--ozeol-orange-light); text-decoration: none; }
+
+        /* ── Ozeol Strip at very bottom ── */
+        .ozeol-strip {
+            position: fixed;
+            bottom: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(to right, var(--ozeol-orange-dark), var(--ozeol-orange), var(--gold), var(--ozeol-orange), var(--ozeol-orange-dark));
+            background-size: 200% 100%;
+            animation: stripShift 4s linear infinite;
+            z-index: 500;
+        }
+        @keyframes stripShift {
+            from { background-position: 0% 0%; }
+            to   { background-position: 200% 0%; }
+        }
+
+        /* ── Back to Top ── */
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem; right: 2rem;
+            width: 48px; height: 48px;
+            background: linear-gradient(135deg, var(--ozeol-orange), var(--ozeol-orange-dark));
+            border: none;
+            border-radius: 50%;
+            color: var(--white);
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 200;
+            opacity: 0;
+            visibility: hidden;
+            transform: scale(0.8) translateY(20px);
+            transition: all 0.4s var(--ease-spring);
+            box-shadow: 0 8px 25px rgba(232,82,26,0.5);
+        }
+        .back-to-top.visible { opacity: 1; visibility: visible; transform: scale(1) translateY(0); }
+        .back-to-top:hover { transform: scale(1.15) translateY(-3px); box-shadow: 0 12px 35px rgba(232,82,26,0.7); }
+
+        /* ── Responsive ── */
+        @media (min-width: 768px) {
+            .hero-headline { font-size: 4.5rem; }
+            .hero-sub { font-size: 1.15rem; }
+            .ozeol-banner-inner { gap: 2rem; }
+        }
+
+        @media (max-width: 480px) {
+            .hero-headline { font-size: 2.4rem; }
+            .hero-partnership { gap: 0.8rem; padding: 0.5rem 1rem; }
+            .partner-logo-pm { width: 40px; height: 40px; }
+            .partner-logo-oz { height: 28px; }
+        }
+    </style>
 </head>
 
 <body>
 
-    <!-- ===== FIXED BACKGROUND ===== -->
+    <!-- ── Fixed Background ── -->
     <div class="fixed-bg">
         <img src="pizzass/mamamia.jpg" alt="" class="bg-img">
         <div class="bg-overlay"></div>
-        <div class="glass-accent a1"></div>
-        <div class="glass-accent a2"></div>
+        <div class="orb o1"></div>
+        <div class="orb o2"></div>
+        <div class="orb o3"></div>
     </div>
 
-    <!-- ===== LOADER ===== -->
+    <!-- ── Animated bottom strip ── -->
+    <div class="ozeol-strip"></div>
+
+    <!-- ── Loader ── -->
     <div class="loader" id="loader">
-        <div class="loader-inner">
-            <img src="OIP__1_-removebg-preview.png" alt="Pizza More" class="loader-logo">
-            <div class="loader-bar-track">
-                <div class="loader-bar-fill"></div>
-            </div>
-            <p class="loader-tagline">L'art de la pâte</p>
+        <div class="loader-logos">
+            <img src="OIP__1_-removebg-preview.png" alt="Pizza More" class="loader-logo-pm">
+            <span class="loader-x">×</span>
+            <img src="logo-Ozeol.png" alt="Ozeol" class="loader-logo-oz">
         </div>
+        <div class="loader-bar-track">
+            <div class="loader-bar-fill"></div>
+        </div>
+        <p class="loader-tagline">Menu Exclusif Collaborateurs</p>
     </div>
 
-    <!-- ===== HERO SCREEN ===== -->
+    <!-- ── Hero ── -->
     <section class="hero" id="hero">
-        <div class="hero-body">
-            <img src="OIP__1_-removebg-preview.png" alt="Pizza More Logo" class="hero-logo" loading="eager">
-            <h1 class="hero-headline"><em class="reveal-text">L'amour<br>à l'italienne</em></h1>
-            <p class="hero-sub reveal-text" id="heroSlogan">Pizzas artisanales préparées à la commande, avec des ingrédients frais.</p>
+        <div class="hero-partnership reveal-text">
+            <img src="OIP__1_-removebg-preview.png" alt="Pizza More" class="partner-logo-pm">
+            <span class="partner-sep">×</span>
+            <img src="logo-Ozeol.png" alt="Ozeol" class="partner-logo-oz">
         </div>
+
+        <div class="hero-badge-corporate reveal-text">
+            🏢 Menu Exclusif · Collaborateurs Ozeol · Sousse
+        </div>
+
+        <h1 class="hero-headline reveal-text">
+            <em>L'amour à l'italienne,</em>
+            pour l'équipe Ozeol
+        </h1>
+
+        <p class="hero-sub reveal-text">
+            Pizza More est fier de vous accueillir — l'équipe Ozeol, 11 ans d'excellence mondiale en revalorisation de produits grand public.
+        </p>
+
+        <div class="hero-company-info reveal-text">
+            <strong>🌍 Ozeol — Overstock Global Solution</strong><br>
+            Multinationale implantée à Sousse depuis 11 ans, spécialisée dans la revalorisation des invendus de produits grand public venant du monde entier.
+        </div>
+
         <button class="hero-cta" id="enterMenu">
-            <span>Découvrir le Menu</span>
+            <span>Voir Notre Carte</span>
             <div class="cta-arrow">↓</div>
         </button>
     </section>
 
-    <!-- ===== MENU APP (GRID) ===== -->
+    <!-- ── Menu App ── -->
     <main class="app" id="app">
+
+        <!-- Sticky Header -->
         <header class="app-header">
-            <img src="OIP__1_-removebg-preview.png" alt="Logo" class="app-logo">
+            <div class="header-logos">
+                <img src="OIP__1_-removebg-preview.png" alt="Pizza More" class="app-logo-pm">
+                <span class="header-sep">×</span>
+                <img src="logo-Ozeol.png" alt="Ozeol" class="app-logo-oz">
+            </div>
+            <div class="header-divider"></div>
             <div class="header-text">
                 <span class="app-title">Notre Carte</span>
-                <span class="app-subtitle">Sélection Artisanale</span>
+                <span class="app-subtitle">Menu Collaborateurs</span>
             </div>
         </header>
 
+        <!-- Welcome Banner -->
+        <div class="ozeol-banner">
+            <div class="ozeol-banner-inner">
+                <div class="banner-icon">🎉</div>
+                <div class="banner-text">
+                    <h3>Bienvenue, équipe Ozeol !</h3>
+                    <p>Cette carte a été créée spécialement pour vous. Régalez-vous avec nos pizzas artisanales préparées à la commande, avec des ingrédients frais sélectionnés avec soin.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Menu Grid -->
         <div class="grid-container" id="menuGrid">
             <!-- Cards injected via JS -->
         </div>
 
+        <!-- Footer -->
         <footer class="app-footer">
-            <p>© 2026 Pizza More Sousse. Tous nos produits sont frais.</p>
+            <div class="footer-logos">
+                <img src="OIP__1_-removebg-preview.png" alt="Pizza More" class="footer-logo-pm">
+                <span class="footer-sep">×</span>
+                <img src="logo-Ozeol.png" alt="Ozeol" class="footer-logo-oz">
+            </div>
+            <p class="footer-text">
+                © 2026 <strong>Pizza More Sousse</strong> — Partenaire officiel d'<a href="#">Ozeol.com</a><br>
+                Tous nos produits sont frais &amp; préparés à la commande. Bon appétit ! 🍕
+            </p>
         </footer>
     </main>
 
-    <!-- ===== BACK TO TOP ===== -->
-    <button class="back-to-top" id="backToTop">↑</button>
+    <!-- ── Back to Top ── -->
+    <button class="back-to-top" id="backToTop" aria-label="Retour en haut">↑</button>
 
-    <script src="script.js"></script>
+    <script>
+        /* ============================================================
+           Pizza More × Ozeol — Menu Script
+        ============================================================ */
+
+        const RAW_MENU = [
+            {
+                category: 'Classiques',
+                items: [
+                    { name: 'Della Mamma',  badge: '🌊 Méditerranéenne', ingredients: 'Sauce tomate, mozzarella, thon, persil, tomates, olives.', prices: { M: '18.9', L: '37.9', XL: '72.9' }, image: 'pizzass/della mamma pizza.jpg' },
+                    { name: 'Perfetto',     badge: '👑 N°1 des Ventes',   ingredients: 'Sauce tomate, mozzarella, pepperoni, Grana Padano.', prices: { M: '18.9', L: '37.9', XL: '72.9' }, image: 'pizzass/670416161_17944344393160622_8557261601981723518_n.jpg' },
+                    { name: 'Della Nonna', badge: '🪵 Fumée Artisanale', ingredients: 'Sauce tomate, mozzarella, jambon fumé, champignons, Grana Padano.', prices: { M: '18.9', L: '37.9', XL: '72.9' }, image: 'pizzass/della nona.png' }
+                ]
+            },
+            {
+                category: 'Gourmandes',
+                items: [
+                    { name: 'Tenero',   badge: '🥩 Bresaola Italienne',  ingredients: 'Sauce tomate, mozzarella, roquette, bresaola, tomates cerises, Grana Padano, noix, sauce balsamique.', prices: { M: '19.9', L: '39.9', XL: '77.9' }, image: 'pizzass/bersawla pizza.jpg' },
+                    { name: 'Oro Nero', badge: '🖤 Truffe Noire',         ingredients: 'Sauce blanche, mozzarella, champignons, sauce à la truffe, roquette.', prices: { M: '19.9', L: '39.9', XL: '77.9' }, image: 'pizzass/avec roquette .jpg' },
+                    { name: 'Mamma Mia', badge: '🌿 Pesto Frais',         ingredients: 'Sauce blanche, mozzarella, poulet, champignons, pesto.', prices: { M: '19.9', L: '39.9', XL: '77.9' }, image: 'pizzass/avec pesto .jpg' }
+                ]
+            },
+            {
+                category: 'Spéciales',
+                items: [
+                    { name: 'Tutti Formaggi', badge: '🧀 6 Fromages', ingredients: 'Sauce blanche, mozzarella, gruyère, gouda Kaiser, raclette, roquefort.', prices: { M: '19.9', L: '39.9', XL: '77.9' }, image: 'pizzass/670416161_17944344393160622_8557261601981723518_n.jpg' },
+                    { name: 'Speziato',       badge: '🌶️ Piquante',   ingredients: 'Sauce tomate, mozzarella, poulet épicé, piment, citron.', prices: { M: '19.9', L: '39.9', XL: '77.9' }, image: 'pizzass/speziato.jpg' },
+                    { name: 'Oro Nero',       badge: '🖤 Truffe Noire', ingredients: 'Sauce blanche, mozzarella, champignons, sauce à la truffe, roquette.', prices: { M: '19.9', L: '39.9', XL: '77.9' }, image: 'pizzass/oro nero pizza or speziato pizza.jpg' }
+                ]
+            },
+            {
+                category: 'Signature',
+                items: [
+                    { name: 'Salmone',      badge: '🐟 Saumon Fumé',  ingredients: 'Sauce blanche, mozzarella, saumon fumé, pistaches concassées, Grana Padano.', prices: { M: '24.9', L: '48.9', XL: '92.9' }, image: 'pizzass/pizzasaumon.jpg' },
+                    { name: 'Pizza Burger', badge: '🍔 Fusion Unique', ingredients: 'Sauce tomate, mozzarella, viande hachée, oignons caramélisés, cheddar, sauce burger.', prices: { M: '24.9', L: '48.9', XL: '92.9' }, image: 'pizzass/della mamma pizza.jpg' },
+                    { name: 'Poulet Fumée', badge: '🍗 Poulet Fumé',  ingredients: 'Sauce blanche, roquette, poulet fumée, tomate cerise, mozzarella cerise, sauce du chef, Grana Padano.', prices: { M: '24.9', L: '48.9', XL: '92.9' }, image: 'pizzass/avec pesto .jpg' }
+                ]
+            }
+        ];
+
+        const ALL_ITEMS = RAW_MENU.flatMap(cat =>
+            cat.items.map(item => ({ ...item, categoryName: cat.category }))
+        );
+
+        const $loader   = document.getElementById('loader');
+        const $hero     = document.getElementById('hero');
+        const $enterBtn = document.getElementById('enterMenu');
+        const $app      = document.getElementById('app');
+        const $menuGrid = document.getElementById('menuGrid');
+
+        window.addEventListener('DOMContentLoaded', () => {
+            renderGrid();
+            setupScrollEffects();
+
+            setTimeout(() => {
+                $loader.classList.add('hidden');
+                triggerSmoothReveal();
+            }, 2000);
+
+            $enterBtn.addEventListener('click', () => {
+                $hero.style.opacity = '0';
+                $hero.style.transform = 'translateY(-20px)';
+                setTimeout(() => {
+                    $hero.style.display = 'none';
+                    $app.classList.add('visible');
+                    window.scrollTo(0, 0);
+                    triggerGridAnimations();
+                }, 600);
+            });
+        });
+
+        function triggerSmoothReveal() {
+            const elements = document.querySelectorAll('.reveal-text');
+            elements.forEach((el, i) => {
+                setTimeout(() => el.classList.add('active'), 300 + (i * 250));
+            });
+        }
+
+        function renderGrid() {
+            $menuGrid.innerHTML = '';
+            let currentCat = '';
+
+            ALL_ITEMS.forEach((item, index) => {
+                if (item.categoryName !== currentCat) {
+                    currentCat = item.categoryName;
+                    const header = document.createElement('div');
+                    header.className = 'grid-category-header';
+                    header.innerHTML = `<h2>${currentCat}</h2><div class="header-line"></div>`;
+                    $menuGrid.appendChild(header);
+                }
+
+                const card = document.createElement('div');
+                card.className = 'grid-card hidden-card';
+
+                let badgeClass = '';
+                if (item.badge) {
+                    const b = item.badge.toLowerCase();
+                    if (b.includes('piquante') || b.includes('spicy')) badgeClass = 'badge-hot';
+                    else if (b.includes('pesto') || b.includes('méditerranéenne')) badgeClass = 'badge-new';
+                    else if (b.includes('truffe') || b.includes('fusion')) badgeClass = 'badge-limited';
+                    else badgeClass = 'badge-gold';
+                }
+
+                card.innerHTML = `
+                    <div class="card-image-box">
+                        <img src="${item.image}" alt="${item.name}" loading="lazy">
+                        ${item.badge ? `<span class="card-badge ${badgeClass}">${item.badge}</span>` : ''}
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">${item.name}</h3>
+                        <p class="card-ingredients">${item.ingredients}</p>
+                        <div class="card-footer">
+                            <div class="card-prices">
+                                ${Object.entries(item.prices).map(([size, val]) => `
+                                    <div class="price-item">
+                                        <span class="s">${size}</span>
+                                        <span class="v">${val} <small style="font-size:0.6rem;opacity:0.7">DT</small></span>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        </div>
+                    </div>
+                `;
+                $menuGrid.appendChild(card);
+            });
+        }
+
+        function triggerGridAnimations() {
+            const cards = document.querySelectorAll('.grid-card');
+            cards.forEach((card, i) => {
+                setTimeout(() => card.classList.add('reveal'), i * 90);
+            });
+        }
+
+        function setupScrollEffects() {
+            window.addEventListener('scroll', () => {
+                const scroll = window.pageYOffset;
+
+                const orbs = document.querySelectorAll('.orb');
+                if (orbs[0]) orbs[0].style.transform = `translate(0, ${scroll * 0.15}px)`;
+                if (orbs[1]) orbs[1].style.transform = `translate(0, ${scroll * -0.1}px)`;
+
+                const btt = document.getElementById('backToTop');
+                if (btt) {
+                    if (scroll > 500) btt.classList.add('visible');
+                    else btt.classList.remove('visible');
+                }
+            });
+        }
+
+        document.addEventListener('click', e => {
+            if (e.target.id === 'backToTop' || e.target.parentElement?.id === 'backToTop') {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        });
+    </script>
 </body>
 
 </html>
