@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Pizza More | Gallery Menu</title>
+    <meta name="description" content="Menu digital de Pizza More — Pizzas artisanales à Sousse.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,700;1,400&display=swap"
+        rel="stylesheet">
+    <link rel="icon" type="image/png" href="OIP__1_-removebg-preview.png">
+    <link rel="apple-touch-icon" href="OIP__1_-removebg-preview.png">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- ===== FIXED BACKGROUND ===== -->
+    <div class="fixed-bg">
+        <img src="pizzass/mamamia.jpg" alt="" class="bg-img">
+        <div class="bg-overlay"></div>
+        <div class="glass-accent a1"></div>
+        <div class="glass-accent a2"></div>
+    </div>
+
+    <!-- ===== LOADER ===== -->
+    <div class="loader" id="loader">
+        <div class="loader-inner">
+            <img src="OIP__1_-removebg-preview.png" alt="Pizza More" class="loader-logo">
+            <div class="loader-bar-track">
+                <div class="loader-bar-fill"></div>
+            </div>
+            <p class="loader-tagline">L'art de la pâte</p>
+        </div>
+    </div>
+
+    <!-- ===== HERO SCREEN ===== -->
+    <section class="hero" id="hero">
+        <div class="hero-body">
+            <img src="OIP__1_-removebg-preview.png" alt="Pizza More Logo" class="hero-logo" loading="eager">
+            <h1 class="hero-headline"><em class="reveal-text">L'amour<br>à l'italienne</em></h1>
+            <p class="hero-sub reveal-text" id="heroSlogan">Pizzas artisanales préparées à la commande, avec des ingrédients frais.</p>
+        </div>
+        <button class="hero-cta" id="enterMenu">
+            <span>Découvrir le Menu</span>
+            <div class="cta-arrow">↓</div>
+        </button>
+    </section>
+
+    <!-- ===== MENU APP (GRID) ===== -->
+    <main class="app" id="app">
+        <header class="app-header">
+            <img src="OIP__1_-removebg-preview.png" alt="Logo" class="app-logo">
+            <div class="header-text">
+                <span class="app-title">Notre Carte</span>
+                <span class="app-subtitle">Sélection Artisanale</span>
+            </div>
+        </header>
+
+        <div class="grid-container" id="menuGrid">
+            <!-- Cards injected via JS -->
+        </div>
+
+        <footer class="app-footer">
+            <p>© 2026 Pizza More Sousse. Tous nos produits sont frais.</p>
+        </footer>
+    </main>
+
+    <!-- ===== BACK TO TOP ===== -->
+    <button class="back-to-top" id="backToTop">↑</button>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
